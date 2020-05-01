@@ -31,6 +31,10 @@ def parseKeybind(dirty_keybind, parse_method):
 
   if parse_method == "i3":
 
+    # i3 keybinds are configured as follows:
+    #
+    # bindsym --<command params> <key combination> <command> <attr>
+
     I3_COMMAND_KEYWORDS = [
                             'workspace', 
                             'focus', 
@@ -50,21 +54,15 @@ def parseKeybind(dirty_keybind, parse_method):
     if i3_keybind:
 
       i3_keybind_obj = {
-
         "keys": i3_keybind.group(1),
-
         "command": i3_keybind.group(2),
-
         "params": i3_keybind.group(3)
-
         }
 
       return i3_keybind_obj
 
     else:
-
         return
-
 
 print ("Parsing i3 config")
 print(i3configToShortcutList(I3_CONFIG_FILE_PATH))
